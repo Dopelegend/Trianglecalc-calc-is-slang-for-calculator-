@@ -3,6 +3,16 @@ project(triangleCalculator)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(FetchContent)
+
+FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG 5.5
+)
+
+FetchContent_MakeAvailable(raylib)
+
 add_executable(triangleCalculator src/main.cpp
         src/textBox.cpp
         include/textBox.h
@@ -10,16 +20,6 @@ add_executable(triangleCalculator src/main.cpp
         include/TriangleCalculator.h
         src/Triangle.cpp
         include/Triangle.h)
-
-set(RAYLIB_PATH "C:/C++/Libs/RayLib/raylib-5.5_win64_mingw-w64")
-
-target_include_directories(triangleCalculator PRIVATE
-        ${RAYLIB_PATH}/include
-)
-
-target_link_directories(triangleCalculator PRIVATE
-        ${RAYLIB_PATH}/lib
-)
 
 set_target_properties(triangleCalculator PROPERTIES
         LINK_FLAGS "-static -static-libgcc -static-libstdc++"
